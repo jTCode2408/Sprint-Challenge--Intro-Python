@@ -7,7 +7,8 @@ class City:
     self.lat = lat
     self.lon = lon
 
-  
+  def __str__(self):
+    return f'({self.name}, {self.lat}, {self.lon})'
 
 # We have a collection of US cities with population over 750,000 stored in the
 # file "cities.csv". (CSV stands for "comma-separated values".)
@@ -18,7 +19,7 @@ class City:
 #
 #https://realpython.com/python-csv/
 ##CSV MOD-
-
+#https://www.protechtraining.com/blog/post/python-for-beginners-reading-manipulating-csv-files-737
 # Store the instances in the "cities" list, below.
 #
 # Note that the first line of the CSV is header that describes the fields--this
@@ -31,18 +32,15 @@ def cityreader(cities=[]):
   # `cities` list
     with open('src/cityreader/cities.csv', 'r') as csvfile:
       City = csv.reader(csvfile)
-
       for row in City:
-        print(row)
-
-
-    return cities
+        cities.append(City(row['city'], float(row['lat']), float(row['lon']))
+        return cities
 
 cityreader(cities)
+  
 
 # Print the list of cities (name, lat, lon), 1 record per line.
-for c in cities:
-    print(cities[c])
+
 
 # STRETCH GOAL!
 #
