@@ -4,8 +4,8 @@ import csv
 class City:
   def __init__(self, name, lat, lon):
     self.name = name
-    self.lat = lat
-    self.lon = lon
+    self.lat = float(lat)
+    self.lon = float(lon)
 
   def __str__(self):
     return f'({self.name}, {self.lat}, {self.lon})'
@@ -32,6 +32,7 @@ def cityreader(cities=[]):
   # `cities` list
     with open('src/cityreader/cities.csv', 'r') as csvfile:
       new = csv.reader(csvfile)
+      next(new, None)
       for row in new:
         cities.append(City(row[0], row[3], row[4]))
       return cities
@@ -42,7 +43,7 @@ cityreader(cities)
 # Print the list of cities (name, lat, lon), 1 record per line.
 for c in cities:
   print(c)
-  
+
 
 # STRETCH GOAL!
 #
